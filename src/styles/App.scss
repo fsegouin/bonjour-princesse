@@ -1,0 +1,105 @@
+/* Base Application Styles */
+
+@import 'variables';
+
+body {
+  font-size: 18px;
+  font-family: $font__lato;
+  color: $color__white;
+  background: $color__yellow;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  h1 {
+    font-family: $font__pacifico;
+    font-size: 3em;
+    font-weight: 100;
+    letter-spacing: 1.6px;
+  }
+
+  input {
+    color: black;
+    text-align: center;
+  }
+
+  &.hide {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);;
+  }
+}
+
+.start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  opacity: 1;
+  transition: 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: 1.5s;
+
+  &.hide {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .title {
+    text-align: center;
+    font-family: $font__pacifico;
+    font-weight: 100;
+
+    h1 {
+      font-size: 2em;
+      font-weight: 100;
+      letter-spacing: 2px;
+      line-height: 1.5em;
+
+      @media (min-width: 768px) {
+        font-size: 4em;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .quote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    // height: 30vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 3em;
+    // margin-top: 30px;
+
+    .quote__text {
+      font-size: 1.3em;
+      padding: 0 1em;
+      text-align: center;
+
+      &:before {
+        content: '\201C';
+      }
+
+      &:after {
+        content: '\201D';
+      }
+
+      @media (min-width: 768px) {
+        font-size: 2.5em;
+        padding: 0;
+      }
+    }
+  }
+}
