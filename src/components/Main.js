@@ -2,12 +2,17 @@ require('normalize.css');
 require('styles/App.scss');
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import cx from 'classnames';
 
 // Data
 import quotesList from '../data/quotes.json';
 
-let castleImage = require('../images/castle.jpg');
+const castleImage = require('../images/castle.png');
+const castleShadowImage = require('../images/castle-shadow.png');
+const castleGrassImage = require('../images/castle-grass.png');
+const cloudsFgImage = require('../images/clouds-fg.png');
+const cloudsBgImage = require('../images/clouds-bg.png');
 
 export default class AppComponent extends React.Component {
   constructor() {
@@ -23,11 +28,12 @@ export default class AppComponent extends React.Component {
 
   checkPassword(event) {
     // Overkill since I only hide in CSS, and I like it.
+    var passwordInput = ReactDOM.findDOMNode(this.refs.passwordInput);
     var crypto = require('crypto');
     var hash = crypto.createHash('sha256').update(event.target.value).digest('base64');
-    console.log(hash);
     if (hash === 'UF6geY+vsYzJQH8TZTt2i+ve660ppmcEdbczPY85jqY=') {
       this.setState({showPage: false});
+      passwordInput.blur();
     }
   }
 
@@ -41,7 +47,7 @@ export default class AppComponent extends React.Component {
     );
 
     const passwordClass = cx(
-      ['password animated pulse'],
+      ['password'],
       { 'hide': !this.state.showPage }
     );
 
@@ -49,11 +55,18 @@ export default class AppComponent extends React.Component {
       <section>
         <div className={passwordClass}>
           <h1>What's the magic word?</h1>
-          <input type="password" name="psw" onChange={this.checkPassword.bind(this)}/>
+          <input type="password" name="psw" autoFocus onChange={this.checkPassword.bind(this)}
+            ref="passwordInput"/>
         </div>
         <div className={startClass}>
+          <div className="castle">
+            <img className="clouds-bg-img" src={cloudsBgImage} />
+            <img className="castle-grass-img" src={castleGrassImage} />
+            <img className="castle-img" src={castleImage} />
+            <img className="castle-shadow-img" src={castleShadowImage} />
+            <img className="clouds-fg-img" src={cloudsFgImage} />
+          </div>
           <div className="title">
-            <img src={castleImage} />
             <h1>Bonjour Princesse,</h1>
           </div>
           <div className="quote">

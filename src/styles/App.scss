@@ -2,6 +2,10 @@
 
 @import 'variables';
 
+html {
+  overflow: scroll;
+}
+
 body {
   font-size: 18px;
   font-family: $font__lato;
@@ -9,30 +13,117 @@ body {
   background: $color__yellow;
 }
 
+#app {
+  overflow-x: hidden;
+}
+
 .password {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
 
   h1 {
     font-family: $font__pacifico;
-    font-size: 3em;
+    text-align: center;
+    font-size: 2em;
     font-weight: 100;
     letter-spacing: 1.6px;
+
+    @media (min-width: 768px) {
+      font-size: 3em;
+    }
   }
 
   input {
     color: black;
+    width: 80vw;
     text-align: center;
+    font-size: 1.5em;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #DDDDDD;
+    transition: all 0.30s ease-in-out;
+    animation: pulse .5s;
+
+    &:focus {
+      box-shadow: 0 0 5px rgba(0, 0 , 0, 0.5);
+    }
+
+    &:active {
+      animation: restart;
+    }
+
+    @media (min-width: 768px) {
+      width: auto;
+    }
   }
 
   &.hide {
     opacity: 0;
     height: 0;
     overflow: hidden;
-    transition: 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);;
+    transition: 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+    & + .start {
+      .clouds-bg-img {
+
+      }
+    }
+  }
+}
+
+.castle {
+  position: relative;
+  width: 80%;
+  height: 30vh;
+
+  img {
+    width: 100%;
+    position: absolute;
+
+    &.clouds-bg-img {
+      z-index: 0;
+      opacity: 0.5;
+      animation-name: clouds-bg-animation;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-duration: 15s;
+      animation-timing-function: ease-in-out;
+    }
+
+    &.castle-grass-img {
+      z-index: 1;
+    }
+
+    &.castle-shadow-img {
+      z-index: 2;
+      animation-name: castle-shadow-animation;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-duration: 10s;
+      animation-timing-function: ease-in-out;
+    }
+
+    &.castle-img {
+      z-index: 3;
+    }
+
+    &.clouds-fg-img {
+      z-index: 4;
+      animation-name: clouds-fg-animation;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-duration: 20s;
+      animation-timing-function: ease-in-out;
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 607px;
+    height: 411px;
   }
 }
 
@@ -41,7 +132,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
   opacity: 1;
   transition: 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition-delay: 1.5s;
@@ -58,10 +149,12 @@ body {
     font-weight: 100;
 
     h1 {
-      font-size: 2em;
+      font-size: 1.8em;
       font-weight: 100;
       letter-spacing: 2px;
       line-height: 1.5em;
+      margin: 1em 0;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.15);
 
       @media (min-width: 768px) {
         font-size: 4em;
@@ -69,7 +162,7 @@ body {
     }
 
     img {
-      width: 100%;
+      width: 80%;
     }
   }
 
@@ -80,13 +173,14 @@ body {
     width: 100%;
     // height: 30vh;
     background-color: rgba(0, 0, 0, 0.1);
-    padding: 3em;
+    padding: 2em 0;
     // margin-top: 30px;
 
     .quote__text {
       font-size: 1.3em;
       padding: 0 1em;
       text-align: center;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.15);
 
       &:before {
         content: '\201C';
@@ -101,5 +195,56 @@ body {
         padding: 0;
       }
     }
+
+    @media (min-width: 768px) {
+      padding: 3em;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {transform: scale(1);},
+  50% {transform: scale(1.2);},
+  65% {transform: scale(0.9);},
+  80% {transform: scale(1.1);},
+  100% {transform: scale(1);}
+}
+
+/* Trigger reflow */
+@keyframes restart {
+  to {width: auto;}
+}
+
+@keyframes clouds-bg-animation {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateX(100px);
+    opacity: 0.2;
+  }
+}
+
+@keyframes clouds-fg-animation {
+  0% {
+    transform: translateX(50px);
+  }
+
+  100% {
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes castle-shadow-animation {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  100% {
+    opacity: 0.3;
+    transform: translateX(10px);
   }
 }

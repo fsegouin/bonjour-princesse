@@ -4,6 +4,7 @@ let port = 8000;
 let srcPath = path.join(__dirname, '/../src');
 let publicPath = '/assets/';
 let additionalPaths = [];
+let autoprefixer = require('autoprefixer');
 module.exports = {
   additionalPaths: additionalPaths,
   port: port,
@@ -48,24 +49,19 @@ module.exports = {
         loader: 'style-loader!css-loader!postcss-loader'
       },
       {
-        test: /\.sass/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded&indentedSyntax'
-      },
-      {
         test: /\.scss/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
       },
       {
-        test: /\.less/,
-        loader: 'style-loader!css-loader!postcss-loader!less-loader'
-      },
-      {
-        test: /\.styl/,
-        loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
-      },
-      {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
+        test: /\.(woff|woff2)$/,
         loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?progressive=true'
+        ]
       },
       {
         test: /\.json?$/,
@@ -73,7 +69,5 @@ module.exports = {
       }
     ]
   },
-  postcss: function () {
-    return [];
-  }
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ]
 };
