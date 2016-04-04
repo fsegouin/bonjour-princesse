@@ -39,7 +39,7 @@ export default class AppComponent extends React.Component {
 
   render() {
     const day = new Date().getDate();
-    const quoteToPick = Math.floor(this.map_range(day, 0, 31, 0, quotesList.quotes.length-1));
+    const quoteToPick = Math.floor(this.map_range(day, 1, 31, 0, quotesList.quotes.length-1));
 
     const startClass = cx(
       ['start'],
