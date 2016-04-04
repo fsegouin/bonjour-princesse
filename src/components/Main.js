@@ -57,8 +57,16 @@ export default class AppComponent extends React.Component {
       { 'smaller': quotesList.quotes[quoteToPick].text.length > 150 }
     );
 
+    const specialDay = cx(
+      ['special'],
+      { 'hide': day !== 6 }
+    );
+
     return (
       <section>
+        <div className={specialDay}>
+          <div className="ribbon">Special Day</div>
+        </div>
         <div className={passwordClass}>
           <h1>What's the magic word?</h1>
           <input type="password" name="psw" autoFocus onChange={this.checkPassword.bind(this)}

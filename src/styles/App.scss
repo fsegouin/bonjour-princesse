@@ -17,6 +17,33 @@ body {
   overflow-x: hidden;
 }
 
+.special {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: flex;
+  background: $color__special;
+
+  &.hide {
+    display: none;
+  }
+
+//  .special--1 {
+//    flex-grow: 1;
+//    background: #8CC63F;
+//  }
+//
+//  .special--2 {
+//    flex-grow: 1;
+//    background: white;
+//  }
+//  .special--3 {
+//    flex-grow: 1;
+//    background: #F7881F;
+//  }
+}
+
 .password {
   display: flex;
   flex-direction: column;
@@ -211,6 +238,20 @@ body {
       padding: 3em;
     }
   }
+}
+
+.ribbon {
+  width: 200px;
+  background: #F7881F;
+  position: fixed;
+  top: 25px;
+  left: -50px;
+  text-align: center;
+  line-height: 50px;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  box-shadow: 0 0 3px rgba(0,0,0,.3);
+  transform: rotate(-45deg);
 }
 
 @keyframes pulse {
