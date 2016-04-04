@@ -31,6 +31,7 @@ export default class AppComponent extends React.Component {
     var passwordInput = ReactDOM.findDOMNode(this.refs.passwordInput);
     var crypto = require('crypto');
     var hash = crypto.createHash('sha256').update(event.target.value).digest('base64');
+
     if (hash === 'UF6geY+vsYzJQH8TZTt2i+ve660ppmcEdbczPY85jqY=') {
       this.setState({showPage: false});
       passwordInput.blur();
@@ -49,6 +50,11 @@ export default class AppComponent extends React.Component {
     const passwordClass = cx(
       ['password'],
       { 'hide': !this.state.showPage }
+    );
+
+    const quoteClass = cx(
+      ['quote__text'],
+      { 'smaller': quotesList.quotes[quoteToPick].text.length > 150 }
     );
 
     return (
@@ -70,7 +76,7 @@ export default class AppComponent extends React.Component {
             <h1>Bonjour Princesse,</h1>
           </div>
           <div className="quote">
-            <div className="quote__text">
+            <div className={quoteClass}>
               {quotesList.quotes[quoteToPick].text}
             </div>
           </div>
