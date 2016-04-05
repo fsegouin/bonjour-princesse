@@ -57,6 +57,11 @@ export default class AppComponent extends React.Component {
       { 'smaller': quotesList.quotes[quoteToPick].text.length > 150 }
     );
 
+    const titleClass = cx(
+      ['title'],
+      { 'smaller': quotesList.quotes[quoteToPick].text.length > 150 }
+    );
+
     const specialDay = cx(
       ['special'],
       { 'hide': day !== 6 }
@@ -80,7 +85,7 @@ export default class AppComponent extends React.Component {
             <img className="castle-shadow-img" src={castleShadowImage} />
             <img className="clouds-fg-img" src={cloudsFgImage} />
           </div>
-          <div className="title">
+          <div className={titleClass}>
             <h1>Bonjour Princesse,</h1>
           </div>
           <div className="quote">
