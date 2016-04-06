@@ -13,6 +13,7 @@ const castleShadowImage = require('../images/castle-shadow.png');
 const castleGrassImage = require('../images/castle-grass.png');
 const cloudsFgImage = require('../images/clouds-fg.png');
 const cloudsBgImage = require('../images/clouds-bg.png');
+const princessImage = require('../images/princess-white.png');
 
 export default class AppComponent extends React.Component {
   constructor() {
@@ -83,7 +84,9 @@ export default class AppComponent extends React.Component {
             <img className="castle-grass-img" src={castleGrassImage} />
             <img className="castle-img" src={castleImage} />
             <img className="castle-shadow-img" src={castleShadowImage} />
-            <img className="clouds-fg-img" src={cloudsFgImage} />
+            <img className="clouds-fg-img hidden" src={cloudsFgImage} />
+            <img className="character-princess" src={princessImage} />
+            <div className="character-princess--shadow"></div>
           </div>
           <div className={titleClass}>
             <h1>Bonjour Princesse,</h1>

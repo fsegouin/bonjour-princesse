@@ -1,6 +1,7 @@
 /* Base Application Styles */
 
 @import 'variables';
+@import 'helpers';
 
 html {
   overflow: scroll;
@@ -147,6 +148,36 @@ body {
       animation-duration: 20s;
       animation-timing-function: ease-in-out;
     }
+
+    &.character-princess {
+      animation-name: character-princess-animation;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+      width: 20%;
+      bottom: -20px;
+      left: 42%;
+      z-index: 3;
+    }
+  }
+
+
+  .character-princess--shadow {
+    animation-name: character-princess--shadow-animation;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    position: absolute;
+    height: 10px;
+    bottom: -28px;
+    z-index: 2;
+    width: 16%;
+    left: 44%;
+    background-color: black;
+    opacity: 0.1;
+    border-radius: 50%;
   }
 
   @media (min-width: 768px) {
@@ -301,5 +332,25 @@ body {
   100% {
     opacity: 0.3;
     transform: translateX(10px);
+  }
+}
+
+@keyframes character-princess-animation {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes character-princess--shadow-animation {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.2);
   }
 }
