@@ -156,8 +156,34 @@ body {
       animation-duration: 2s;
       animation-timing-function: ease-in-out;
       width: 20%;
-      bottom: -20px;
-      left: 42%;
+      bottom: 20px;
+      left: 30%;
+      z-index: 3;
+    }
+
+    &.character-prince {
+      @extend .character-princess;
+      width: 15%;
+      left: 55%;
+    }
+
+    &.character-cav {
+      width: 16%;
+      left: 13%;
+      bottom: 20px;
+      z-index: 3;
+      transform: scaleX(-1);
+    }
+
+    &.character-pipito {
+      animation-name: character-pipito-animation;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+      width: 12%;
+      left: 45%;
+      bottom: 0px;
       z-index: 3;
     }
   }
@@ -171,18 +197,40 @@ body {
     animation-timing-function: ease-in-out;
     position: absolute;
     height: 10px;
-    bottom: -28px;
+    bottom: 15px;
     z-index: 2;
     width: 16%;
-    left: 44%;
+    left: 32%;
     background-color: black;
     opacity: 0.1;
     border-radius: 50%;
   }
 
+  .character-prince--shadow {
+    @extend .character-princess--shadow;
+    width: 12%;
+    left: 56%;
+  }
+
+  .character-cav--shadow {
+    @extend .character-princess--shadow;
+    width: 13%;
+    left: 14%;
+    bottom: 16px;
+    animation: none;
+  }
+
+  .character-pipito--shadow {
+    @extend .character-princess--shadow;
+    width: 8%;
+    left: 47%;
+    bottom: -4px;
+    animation-name: character-pipito--shadow-animation;
+  }
+
   @media (min-width: 768px) {
-    width: 607px;
-    height: 411px;
+    width: 478px;
+    height: 344px;
   }
 }
 
@@ -191,7 +239,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 85vh;
+  height: 93vh;
   opacity: 1;
   transition: 2s opacity ease-in-out;
   transition-delay: 1.6s;
@@ -217,7 +265,7 @@ body {
 
       @media (min-width: 768px) {
         margin: 0.7em 0;
-        font-size: 4em;
+        font-size: 3em;
       }
     }
 
@@ -268,9 +316,6 @@ body {
     }
   }
 
-  @media (min-width: 768px) {
-    height: 100vh;
-  }
 }
 
 .ribbon {
@@ -341,6 +386,42 @@ body {
 
   100% {
     transform: translateY(-5px);
+  }
+}
+
+@keyframes character-pipito-animation {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+
+  33% {
+    transform: rotate(-10deg) translateX(-15px);
+  }
+
+  66% {
+    transform: rotate(10deg) translateX(15px);
+  }
+
+  100% {
+    transform: rotate(-10deg) translateX(-15px);
+  }
+}
+
+@keyframes character-pipito--shadow-animation {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+
+  33% {
+    transform: translateX(-10px) scale(0.8);
+  }
+
+  66% {
+    transform: translateX(10px) scale(0.8);
+  }
+
+  100% {
+    transform: translateX(-10px) scale(0.8);
   }
 }
 

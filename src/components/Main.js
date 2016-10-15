@@ -14,6 +14,9 @@ const castleGrassImage = require('../images/castle-grass.png');
 const cloudsFgImage = require('../images/clouds-fg.png');
 const cloudsBgImage = require('../images/clouds-bg.png');
 const princessImage = require('../images/princess-white.png');
+const princeImage = require('../images/char_prince.png');
+const cavImage = require('../images/char_cav.png');
+const pipitoImage = require('../images/char_pipito.png');
 
 export default class AppComponent extends React.Component {
   constructor() {
@@ -87,6 +90,12 @@ export default class AppComponent extends React.Component {
             <img className="clouds-fg-img hidden" src={cloudsFgImage} />
             <img className="character-princess" src={princessImage} />
             <div className="character-princess--shadow"></div>
+            <img className="character-prince" src={princeImage} />
+            <div className="character-prince--shadow"></div>
+            <img className="character-cav" src={cavImage} />
+            <div className="character-cav--shadow"></div>
+            <img className="character-pipito" src={pipitoImage} />
+            <div className="character-pipito--shadow"></div>
           </div>
           <div className={titleClass}>
             <h1>Bonjour Princesse,</h1>
