@@ -24,25 +24,24 @@ body {
   height: 100vh;
   z-index: -1;
   display: flex;
-  background: $color__special;
+
+  &.special--anniversary {
+    background: $color__special-anniversary;
+  }
+
+  &.special--birthday {
+    background: $color__special-birthday;
+
+    .ribbon {
+      width: 250px;
+      top: 45px;
+      left: -53px;
+    }
+  }
 
   &.hide {
     display: none;
   }
-
-//  .special--1 {
-//    flex-grow: 1;
-//    background: #8CC63F;
-//  }
-//
-//  .special--2 {
-//    flex-grow: 1;
-//    background: white;
-//  }
-//  .special--3 {
-//    flex-grow: 1;
-//    background: #F7881F;
-//  }
 }
 
 .password {
