@@ -18,6 +18,49 @@ body {
   overflow-x: hidden;
 }
 
+.valentines {
+  .character-princess {
+    display: none;
+  }
+
+  .character-princess--shadow {
+    display: none;
+  }
+
+  .character-prince {
+    display: none;
+  }
+
+  .character-prince--shadow {
+    display: none;
+  }
+
+  .character-cav {
+    display: none;
+  }
+
+  .character-cav--shadow {
+    display: none;
+  }
+
+  .character-pipito {
+    animation-name: none !important;
+    width: 30% !important;
+    left: 36.5% !important;
+  }
+
+  .character-pipito--shadow {
+    display: block !important;
+    animation-name: none !important;
+    width: 21% !important;
+    left: 41% !important;
+  }
+
+  .valentines-heart {
+    display: block !important;
+  }
+}
+
 .special {
   position: absolute;
   width: 100vw;
@@ -38,6 +81,19 @@ body {
       left: -53px;
     }
   }
+
+  &.special--valentines {
+    background: $color__special-valentines;
+
+    .ribbon {
+      width: 250px;
+      top: 45px;
+      left: -53px;
+      background: #FF0065;
+    }
+  }
+
+
 
   &.hide {
     display: none;
@@ -112,6 +168,10 @@ body {
     width: 100%;
     position: absolute;
 
+    &.hide {
+      display: none;
+    }
+
     &.clouds-bg-img {
       z-index: 0;
       opacity: 0.5;
@@ -184,6 +244,22 @@ body {
       left: 45%;
       bottom: 0px;
       z-index: 3;
+
+      &.no-animate {
+        animation-name: none;
+      }
+    }
+
+    &.valentines-heart {
+      display: none;
+      animation-name: valentines-heart-animation;
+      animation-iteration-count: infinite;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      width: 23%;
+      left: 40%;
+      top: 58%;
+      z-index: 3;
     }
   }
 
@@ -203,6 +279,14 @@ body {
     background-color: black;
     opacity: 0.1;
     border-radius: 50%;
+
+    &.hide {
+      display: none;
+    }
+
+    &.no-animate {
+      animation: none;
+    }
   }
 
   .character-prince--shadow {
@@ -329,6 +413,7 @@ body {
   color: #f0f0f0;
   box-shadow: 0 0 3px rgba(0,0,0,.3);
   transform: rotate(-45deg);
+  z-index: 4;
 }
 
 @keyframes pulse {
@@ -431,5 +516,31 @@ body {
 
   100% {
     transform: scale(1.2);
+  }
+}
+
+@keyframes valentines-heart-animation {
+  0% {
+    transform: scale(1);
+  }
+
+  11% {
+    transform: scale(0.8);
+  }
+
+  22% {
+    transform: scale(1);
+  }
+
+  33% {
+    transform: scale(0.8);
+  }
+
+  44% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

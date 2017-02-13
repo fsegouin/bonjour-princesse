@@ -17,6 +17,7 @@ const princessImage = require('../images/princess-white.png');
 const princeImage = require('../images/char_prince.png');
 const cavImage = require('../images/char_cav.png');
 const pipitoImage = require('../images/char_pipito.png');
+const valentinesHeartImage = require('../images/valentines_heart.png');
 
 export default class AppComponent extends React.Component {
   constructor() {
@@ -47,12 +48,13 @@ export default class AppComponent extends React.Component {
     const day = date.getDate();
     const month = date.getMonth();
     const duration = Math.ceil((date.getTime() - new Date(2015, 9, 6).getTime()) / (1000*60*60*24));
-    const quoteToPick = Math.floor(this.map_range(day, 1, 31, 0, quotesList.quotes.length-1));
-    const isSpecialDay = ((day === 18 && month === 0) || day === 6 ? true : false);
+    const quoteIndex = Math.floor(this.map_range(day, 1, 31, 0, quotesList.quotes.length-1));
+    const isSpecialDay = ((day === 18 && month === 0) || day === 6 || (day === 14 && month === 1) ? true : false);
 
     const startClass = cx(
       ['start'],
-      { 'hide': this.state.showPage }
+      { 'hide': this.state.showPage },
+      { 'valentines': isSpecialDay && day === 14 }
     );
 
     const passwordClass = cx(
@@ -62,30 +64,67 @@ export default class AppComponent extends React.Component {
 
     const quoteClass = cx(
       ['quote__text'],
-      { 'smaller': quotesList.quotes[quoteToPick].text.length > 150 }
+      { 'smaller': quotesList.quotes[quoteIndex].text.length > 150 }
     );
 
     const titleClass = cx(
       ['title'],
-      { 'smaller': quotesList.quotes[quoteToPick].text.length > 150 }
+      { 'smaller': quotesList.quotes[quoteIndex].text.length > 150 }
     );
 
     const specialDay = cx(
         ['special'],
         {'special--anniversary': day === 6},
         {'special--birthday': day === 18 && month === 0},
+        {'special--valentines': day === 14 && month === 1},
         { 'hide': !isSpecialDay }
     );
+
+    const specialRibbon = (day) => {
+      switch (day) {
+        case 6:
+          return 'Anniversary';
+        case 14:
+          return 'Valentine\'s Day';
+        case 18:
+          return 'Princess\' Birthday';
+        default:
+          return '';
+      }
+    };
+
+    const quoteToPick = (day) => {
+      if (!isSpecialDay) {
+        return quotesList.quotes[quoteIndex].text;
+      }
+      else {
+        switch (day) {
+          case 6:
+            return quotesList.specials[1].text.replace(/\?/i, duration);
+          case 14:
+            return quotesList.specials[2].text;
+          case 18:
+            return quotesList.specials[0].text;
+          default:
+            return '';
+        }
+      }
+    };
 
       return (
           <section>
             <div className={specialDay}>
-              <div className="ribbon">{day % 18 ? 'Anniversary' : 'Princess\' Birthday' }</div>
+              <div className="ribbon">{specialRibbon(day)}</div>
             </div>
             <div className={passwordClass}>
               <h1>What's the magic word?</h1>
-              <input type="password" name="psw" autoFocus onChange={this.checkPassword.bind(this)}
-                     ref="passwordInput"/>
+              <input
+                type="password"
+                name="psw"
+                onChange={this.checkPassword.bind(this)}
+                ref="passwordInput"
+                autoFocus
+              />
             </div>
             <div className={startClass}>
               <div className="castle">
@@ -95,22 +134,21 @@ export default class AppComponent extends React.Component {
                 <img className="castle-shadow-img" src={castleShadowImage} />
                 <img className="clouds-fg-img hidden" src={cloudsFgImage} />
                 <img className="character-princess" src={princessImage} />
-                <div className="character-princess--shadow"></div>
+                <div className="character-princess--shadow" />
                 <img className="character-prince" src={princeImage} />
-                <div className="character-prince--shadow"></div>
+                <div className="character-prince--shadow" />
                 <img className="character-cav" src={cavImage} />
-                <div className="character-cav--shadow"></div>
+                <div className="character-cav--shadow" />
                 <img className="character-pipito" src={pipitoImage} />
-                <div className="character-pipito--shadow"></div>
+                <div className="character-pipito--shadow" />
+                <img className="valentines-heart" src={valentinesHeartImage} />
               </div>
               <div className={titleClass}>
                 <h1>Bonjour Princesse,</h1>
               </div>
               <div className="quote">
                 <div className={quoteClass}>
-                  {!isSpecialDay ? quotesList.quotes[quoteToPick].text
-                   : (day % 18) ? quotesList.specials[1].text.replace(/\?/i, duration)
-                  : quotesList.specials[0].text}
+                  {quoteToPick(day)}
                 </div>
               </div>
             </div>
